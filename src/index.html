@@ -30,9 +30,54 @@ User Story #15: My calculator should have several decimal places of precision wh
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <style>
+      #calculator {
+        width: 200px;
+      }
+
+      #pinpad button {
+        width: 30px;
+        height: 30px;
+      }
+    </style>
   </head>
   <body class="bg-light">
-    <div id="root"></div>
+    <div id="root">
+      <div id="calculator" class="container-fluid">
+        <div id="display">
+          <p class="text-right">0</p>
+        </div>
+        <div id="pinpad">
+          <div class="row">
+            <button class="col m-2 p-0" id="clear">CE</button>
+            <button class="col m-2 p-0" id="subtract">-</button>
+            <button class="col m-2 p-0" id="multiply">*</button>
+            <button class="col m-2 p-0" id="devide">/</button>
+          </div>
+          <div class="row">
+            <button class="col m-2 p-0" id="one">1</button>
+            <button class="col m-2 p-0" id="two">2</button>
+            <button class="col m-2 p-0" id="three">3</button>
+            <button class="col m-2 p-0" id="add">+</button>
+          </div>
+          <div class="row">
+            <button class="col m-2 p-0" id="four">4</button>
+            <button class="col m-2 p-0" id="five">5</button>
+            <button class="col m-2 p-0" id="six">6</button>
+          </div>
+          <div class="row">
+            <button class="col m-2 p-0" id="seven">7</button>
+            <button class="col m-2 p-0" id="eight">8</button>
+            <button class="col m-2 p-0" id="nine">9</button>
+            <button class="col m-2 p-0" id="equals">=</button>
+          </div>
+          <div class="row">
+            <button class="col m-2 p-0" id="zero">0</button>
+            <button class="col m-2 p-0" id="decimal">.</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
   </body>
 </html>
