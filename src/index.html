@@ -39,7 +39,7 @@ User Story #15: My calculator should have several decimal places of precision wh
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         row-gap: 10px;
         column-gap: 10px;
-        grid-template-areas: "clear devide multiply minus" "one two three add" "four five six add" "seven eight nine equals" "zero zero decimal equals";
+        grid-template-areas: "clear divide multiply subtract" "one two three add" "four five six add" "seven eight nine equals" "zero zero decimal equals";
       }
 
       #pinpad button {
@@ -50,71 +50,71 @@ User Story #15: My calculator should have several decimal places of precision wh
         font-size: 18pt;
       }
 
-      .clear {
+      #clear {
         grid-area: clear;
       }
 
-      .minus {
-        grid-area: minus;
+      #subtract {
+        grid-area: subtract;
       }
 
-      .multiply {
+      #multiply {
         grid-area: multiply;
       }
 
-      .devide {
-        grid-area: devide;
+      #divide {
+        grid-area: divide;
       }
 
-      .one {
+      #one {
         grid-area: one;
       }
 
-      .two {
+      #two {
         grid-area: two;
       }
 
-      .three {
+      #three {
         grid-area: three;
       }
 
-      .add {
+      #add {
         grid-area: add;
       }
 
-      .four {
+      #four {
         grid-area: four;
       }
 
-      .five {
+      #five {
         grid-area: five;
       }
 
-      .six {
+      #six {
         grid-area: six;
       }
 
-      .seven {
+      #seven {
         grid-area: seven;
       }
 
-      .eight {
+      #eight {
         grid-area: eight;
       }
 
-      .nine {
+      #nine {
         grid-area: nine;
       }
 
-      .equals {
+      #equals {
         grid-area: equals;
       }
 
-      .zero {
+      #zero {
         grid-area: zero;
       }
 
-      .decimal {
+      #decimal {
         grid-area: decimal;
       }
     </style>
@@ -124,23 +124,23 @@ User Story #15: My calculator should have several decimal places of precision wh
       <div id="calculator" class="mx-auto">
         <p id="display" class="text-right">0</p>
         <div id="pinpad">
-          <button class="clear">CE</button>
-          <button class="devide">/</button>
-          <button class="multiply">*</button>
-          <button class="minus">-</button>
-          <button class="one">1</button>
-          <button class="two">2</button>
-          <button class="three">3</button>
-          <button class="add">+</button>
-          <button class="four">4</button>
-          <button class="five">5</button>
-          <button class="six">6</button>
-          <button class="seven">7</button>
-          <button class="eight">8</button>
-          <button class="nine">9</button>
-          <button class="equals">=</button>
-          <button class="zero">0</button>
-          <button class="decimal">.</button>
+          <button id="clear">CE</button>
+          <button id="divide">/</button>
+          <button id="multiply">*</button>
+          <button id="subtract">-</button>
+          <button id="one">1</button>
+          <button id="two">2</button>
+          <button id="three">3</button>
+          <button id="add">+</button>
+          <button id="four">4</button>
+          <button id="five">5</button>
+          <button id="six">6</button>
+          <button id="seven">7</button>
+          <button id="eight">8</button>
+          <button id="nine">9</button>
+          <button id="equals">=</button>
+          <button id="zero">0</button>
+          <button id="decimal">.</button>
         </div>
       </div>
     </div>
