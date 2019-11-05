@@ -16,7 +16,6 @@ User Story #14: Pressing an operator immediately following = should start a new 
 User Story #15: My calculator should have several decimal places of precision when it comes to rounding (note that there is no exact standard, but you should be able to handle calculations like 2 / 7 with reasonable precision to at least 4 decimal places).
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,49 +31,116 @@ User Story #15: My calculator should have several decimal places of precision wh
     />
     <style>
       #calculator {
-        width: 200px;
+        width: 350px;
+      }
+      #pinpad {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        row-gap: 10px;
+        column-gap: 10px;
+        grid-template-areas: "clear devide multiply minus" "one two three add" "four five six add" "seven eight nine equals" "zero zero decimal equals";
       }
 
       #pinpad button {
-        width: 30px;
-        height: 30px;
+        min-height: 80px;
+        min-width: 80px;
+
+        font-family: monospace;
+        font-size: 18pt;
+      }
+
+      .clear {
+        grid-area: clear;
+      }
+
+      .minus {
+        grid-area: minus;
+      }
+
+      .multiply {
+        grid-area: multiply;
+      }
+
+      .devide {
+        grid-area: devide;
+      }
+
+      .one {
+        grid-area: one;
+      }
+
+      .two {
+        grid-area: two;
+      }
+
+      .three {
+        grid-area: three;
+      }
+
+      .add {
+        grid-area: add;
+      }
+
+      .four {
+        grid-area: four;
+      }
+
+      .five {
+        grid-area: five;
+      }
+
+      .six {
+        grid-area: six;
+      }
+
+      .seven {
+        grid-area: seven;
+      }
+
+      .eight {
+        grid-area: eight;
+      }
+
+      .nine {
+        grid-area: nine;
+      }
+
+      .equals {
+        grid-area: equals;
+      }
+
+      .zero {
+        grid-area: zero;
+      }
+
+      .decimal {
+        grid-area: decimal;
       }
     </style>
   </head>
-  <body class="bg-light">
-    <div id="root">
-      <div id="calculator" class="container-fluid">
-        <div id="display">
-          <p class="text-right">0</p>
-        </div>
+  <body>
+    <div id="root" class="container-fluid">
+      <div id="calculator" class="mx-auto">
+        <p id="display" class="text-right">0</p>
         <div id="pinpad">
-          <div class="row">
-            <button class="col m-2 p-0" id="clear">CE</button>
-            <button class="col m-2 p-0" id="subtract">-</button>
-            <button class="col m-2 p-0" id="multiply">*</button>
-            <button class="col m-2 p-0" id="devide">/</button>
-          </div>
-          <div class="row">
-            <button class="col m-2 p-0" id="one">1</button>
-            <button class="col m-2 p-0" id="two">2</button>
-            <button class="col m-2 p-0" id="three">3</button>
-            <button class="col m-2 p-0" id="add">+</button>
-          </div>
-          <div class="row">
-            <button class="col m-2 p-0" id="four">4</button>
-            <button class="col m-2 p-0" id="five">5</button>
-            <button class="col m-2 p-0" id="six">6</button>
-          </div>
-          <div class="row">
-            <button class="col m-2 p-0" id="seven">7</button>
-            <button class="col m-2 p-0" id="eight">8</button>
-            <button class="col m-2 p-0" id="nine">9</button>
-            <button class="col m-2 p-0" id="equals">=</button>
-          </div>
-          <div class="row">
-            <button class="col m-2 p-0" id="zero">0</button>
-            <button class="col m-2 p-0" id="decimal">.</button>
-          </div>
+          <button class="clear">CE</button>
+          <button class="devide">/</button>
+          <button class="multiply">*</button>
+          <button class="minus">-</button>
+          <button class="one">1</button>
+          <button class="two">2</button>
+          <button class="three">3</button>
+          <button class="add">+</button>
+          <button class="four">4</button>
+          <button class="five">5</button>
+          <button class="six">6</button>
+          <button class="seven">7</button>
+          <button class="eight">8</button>
+          <button class="nine">9</button>
+          <button class="equals">=</button>
+          <button class="zero">0</button>
+          <button class="decimal">.</button>
         </div>
       </div>
     </div>
