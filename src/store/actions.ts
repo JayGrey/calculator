@@ -12,40 +12,40 @@ export enum CalculatorActionTypes {
 }
 
 export interface CalculatorAction extends Redux.Action<CalculatorActionTypes> {
-    payload? : string;
+  payload?: string;
 }
 
 export type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-export const buttonCEPressedAction = () => ({
+export const buttonCEPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_CE_PRESSED,
 });
 
-export const buttonDigitPressedAction = (value: Digit) => ({
+export const buttonDigitPressedAction = (value: Digit): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_DIGIT_PRESSED,
-  payload: value,
+  payload: Number(value).toString(),
 });
 
-export const buttonEqualsPressedAction = () => ({
+export const buttonEqualsPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_EQUALS_PRESSED,
 });
 
-export const buttonSubtractPressedAction = () => ({
+export const buttonSubtractPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_SUBTRACT_PRESSED,
 });
 
-export const buttonMultiplyPressedAction = () => ({
+export const buttonMultiplyPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_MULTIPLY_PRESSED,
 });
 
-export const buttonDividePressedAction = () => ({
+export const buttonDividePressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_DIVIDE_PRESSED,
 });
 
-export const buttonAddPressedAction = () => ({
+export const buttonAddPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_ADD_PRESSED,
 });
 
-export const buttonDecimalPressedAction = () => ({
+export const buttonDecimalPressedAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_DECIMAL_PRESSED,
 });

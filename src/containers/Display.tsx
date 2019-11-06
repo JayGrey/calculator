@@ -7,10 +7,10 @@ interface DisplayProps {
   displayText: string;
 }
 
-const Display = (props: DisplayProps) => {
+const Display = (props: DisplayProps): JSX.Element => {
   return (
     <p id="display" className="text-right text-light border border-primary rounded p-1 mt-2">
-      {props.displayText}
+      {props.displayText || "0"}
     </p>
   );
 };
