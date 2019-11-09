@@ -12,26 +12,57 @@ const findLastNum = (arr: string[], pos = arr.length - 1): number => {
   return pos == -1 || arr[pos].match(/^\d+/) ? pos : findLastNum(arr, pos - 1);
 };
 
-const simplifyOperators = (arr: string[]): string => {
-  if (arr.length == 1) {
-    return arr[0];
-  }
-
-  return arr[arr.length - 1] == "-" ? arr.slice(arr.length - 2).join("") : arr[arr.length - 1];
-};
-
-const trimBeginning = (arr: string[]): string[] => {
-  const index = findNextNum(arr);
-  if (index == 0) {
-    return arr;
-  }
-};
-
 const findNextOperator = (oper: string, arr: string[], pos = 0): number => {
   if (pos >= arr.length) {
     return -1;
   }
   return arr[pos][0] == oper ? pos : findNextOperator(oper, arr, pos + 1);
+};
+
+const trimBeginning = (arr: string[]): string[] => {
+  const index = findNextNum(arr);
+  if (index == 0 || index == -1) {
+    return arr;
+  } else {
+    if (arr[index - 1] == "-") {
+      return [Number(Number(arr[index]) * -1).toString(), ...arr.slice(index + 1)];
+    } else {
+      return [...arr.slice(index)];
+    }
+  }
+};
+
+const trimEnding = (arr: string[]): string[] => {
+  const index = findLastNum(arr);
+  return index == -1 ? arr : arr.slice(0, index + 1);
+};
+
+const simplifyOperators = (arr: string[]): string[] => {
+  let accum: string[] = [];
+
+  return arr.reduce((resArray: string[], current: string) => {
+    if (current.match(/^\d/)) {
+      // squash accum
+      if (accum.length == 0) {
+        return [...resArray, current];
+      } else {
+        const op = accum.reduceRight((accum: string, current: string) => {
+          if (accum.length == 0) {
+            return current;
+          }
+          if (accum.length == 1 && accum == "-") {
+            return current + accum;
+          }
+          return accum;
+        }, "");
+        accum = [];
+        return [...resArray, op, current];
+      }
+    } else {
+      accum.push(current);
+      return resArray;
+    }
+  }, []);
 };
 
 const calculate = (oper: string, num1: string, num2: string): string => {
@@ -47,20 +78,7 @@ const calculate = (oper: string, num1: string, num2: string): string => {
       ? Number(num1) / (koefecient * Number(num2))
       : NaN;
 
-  return (Number.isInteger(num) ? num : Number(num).toFixed(4)).toString();
-
-  // switch (oper[0]) {
-  //   case "+":
-  //     return Number(Number(num1) + koefecient * Number(num2)).toString();
-  //   case "-":
-  //     return Number(Number(num1) - koefecient * Number(num2)).toString();
-  //   case "*":
-  //     return Number(Number(num1) * koefecient * Number(num2)).toString();
-  //   case "/":
-  //     return Number(Number(num1) / (koefecient * Number(num2))).toString();
-  //   default:
-  //     throw Error(`unknown operator: ${oper}`);
-  // }
+  return Number(num).toString();
 };
 
 const evalOperator = (oper: string, arr: string[]): string[] => {
@@ -76,58 +94,11 @@ const evalOperator = (oper: string, arr: string[]): string[] => {
 };
 
 export const evaluate = (arr: string[]): string => {
-  // simplify start of the arr
-  // simplify end of the arr
-  // reduce to one sequence of operators
-
-  // process / operator
-  // process * operator
-  // process + operator
-  // process - operator
-  const result = evalOperator("-", evalOperator("+", evalOperator("*", evalOperator("/", arr))));
+  const result = evalOperator(
+    "-",
+    evalOperator("+", evalOperator("*", evalOperator("/", simplifyOperators(trimEnding(trimBeginning(arr)))))),
+  );
 
   // trim fraction part to 4 digits
   return result[0];
 };
-
-console.log("util started");
-
-// console.log(evaluate(["1", "+", "2"]));
-// console.log(findLastNum(["1", "+", "2", "+", "-"]));
-// console.log(findLastNum(["+", "-"]));
-// console.log(findLastNum([]));
-
-// console.log(findNextNum(["1", "+", "2", "+", "-"]));
-// console.log(findNextNum(["-", "1", "+", "2", "+", "-"]));
-// console.log(findNextNum(["+", "-", "1", "+", "2", "+", "-"]));
-// console.log(findNextNum(["-"]));
-// console.log(findNextNum([]));
-
-// simplify operators
-// console.log(simplifyOperators(["+"]));
-// console.log(simplifyOperators(["*", "-", "/"]));
-// console.log(simplifyOperators(["*", "/", "-"]));
-// console.log(simplifyOperators(["*", "-", "-"]));
-
-// calculate
-// console.log(calculate("+-", "2", "3"));
-// console.log(calculate("+", "2", "3"));
-
-// console.log(calculate("--", "2", "3"));
-// console.log(calculate("-", "2", "3"));
-
-// console.log(calculate("*-", "2", "3"));
-// console.log(calculate("*", "2", "3"));
-
-// console.log(calculate("/-", "2", "3"));
-// console.log(calculate("/", "2", "3"));
-
-// findNextOperator
-// console.log(findNextOperator("+", ["1", "/", "2", "-", "3"]));
-// console.log(findNextOperator("+", ["1", "/", "2", "+", "3"]));
-// console.log(findNextOperator("-", ["1", "/", "2", "+", "3"]));
-
-// evalOperator
-// console.log(evalOperator("+", ["7", "+", "2", "+-", "3", "/", "2"]));
-
-console.log(evaluate(["7", "+", "2", "+-", "3", "/", "2"]));
