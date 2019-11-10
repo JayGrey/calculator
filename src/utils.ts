@@ -102,3 +102,5 @@ export const evaluate = (arr: string[]): string => {
   // trim fraction part to 4 digits
   return result[0];
 };
+
+console.log(evaluate(["5", "+", "-", "9", "+", "5"]));

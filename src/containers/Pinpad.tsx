@@ -10,6 +10,7 @@ import {
   buttonSubtractPressedAction,
   buttonMultiplyPressedAction,
   buttonDividePressedAction,
+  buttonEqualsPressedAction,
   Digit,
 } from "../store/actions";
 
@@ -21,6 +22,7 @@ interface PinpadProps {
   buttonSubtractPressedAction?: () => void;
   buttonMultiplyPressedAction?: () => void;
   buttonDividePressedAction?: () => void;
+  buttonEqualsPressedAction?: () => void;
 }
 
 const Pinpad = (props: PinpadProps): JSX.Element => {
@@ -40,7 +42,7 @@ const Pinpad = (props: PinpadProps): JSX.Element => {
       <Button id="seven" title="7" clickHandler={(): void => props.buttonDigitPressedAction(7)} />
       <Button id="eight" title="8" clickHandler={(): void => props.buttonDigitPressedAction(8)} />
       <Button id="nine" title="9" clickHandler={(): void => props.buttonDigitPressedAction(9)} />
-      <Button id="equals" title="=" />
+      <Button id="equals" title="=" clickHandler={props.buttonEqualsPressedAction} />
       <Button id="zero" title="0" clickHandler={(): void => props.buttonDigitPressedAction(0)} />
       <Button id="decimal" title="." clickHandler={props.buttonDecimalPressedAction} />
     </div>
@@ -55,6 +57,7 @@ const mapDispatchToProps = {
   buttonSubtractPressedAction,
   buttonMultiplyPressedAction,
   buttonDividePressedAction,
+  buttonEqualsPressedAction,
 };
 
 export default ReactRedux.connect(null, mapDispatchToProps)(Pinpad);
