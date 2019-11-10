@@ -1,15 +1,43 @@
 import * as Redux from "redux";
 import { CalculatorActionTypes, CalculatorAction } from "./actions";
-import { evaluate } from "../utils";
+import { evaluate, getDigitName } from "../utils";
+
+export interface ButtonsState {
+  zero: boolean;
+  one: boolean;
+  two: boolean;
+  three: boolean;
+  four: boolean;
+  five: boolean;
+  six: boolean;
+  seven: boolean;
+  eight: boolean;
+  nine: boolean;
+  decimal: boolean;
+}
 
 export interface StoreState {
   displayText: string;
   elements: string[];
+  buttonsState: ButtonsState;
 }
 
 const defaultState: StoreState = {
   displayText: "",
   elements: [],
+  buttonsState: {
+    zero: false,
+    one: false,
+    two: false,
+    three: false,
+    four: false,
+    five: false,
+    six: false,
+    seven: false,
+    eight: false,
+    nine: false,
+    decimal: false,
+  },
 };
 
 const reducer = (state: StoreState = defaultState, action: CalculatorAction): StoreState => {
@@ -24,8 +52,24 @@ const reducer = (state: StoreState = defaultState, action: CalculatorAction): St
         : { ...state, displayText: state.displayText.concat(action.payload) };
     }
 
+    case CalculatorActionTypes.BUTTON_DIGIT_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, [getDigitName(Number(action.payload))]: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_DIGIT_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, [getDigitName(Number(action.payload))]: false } };
+    }
+
     case CalculatorActionTypes.BUTTON_DECIMAL_PRESSED: {
       return state.displayText.indexOf(".") === -1 ? { ...state, displayText: state.displayText.concat(".") } : state;
+    }
+
+    case CalculatorActionTypes.BUTTON_DECIMAL_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, decimal: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_DECIMAL_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, decimal: false } };
     }
 
     case CalculatorActionTypes.BUTTON_ADD_PRESSED: {
