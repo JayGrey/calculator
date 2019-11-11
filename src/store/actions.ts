@@ -31,15 +31,6 @@ export interface CalculatorAction extends Redux.Action<CalculatorActionTypes> {
 
 export type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-export const buttonCEPressedAction = (): CalculatorAction => ({
-  type: CalculatorActionTypes.BUTTON_CE_PRESSED,
-});
-
-export const buttonDigitPressedAction = (value: Digit): CalculatorAction => ({
-  type: CalculatorActionTypes.BUTTON_DIGIT_PRESSED,
-  payload: Number(value).toString(),
-});
-
 const createKeyAction = (
   event: KeyboardEvent,
   pressedAction: CalculatorActionTypes,
@@ -66,7 +57,16 @@ const createKeyAction = (
   }
 };
 
-export const buttonDigitAction = (event: KeyboardEvent, value: Digit): CalculatorAction => {
+export const buttonCEPressedAction = (): CalculatorAction => ({
+  type: CalculatorActionTypes.BUTTON_CE_PRESSED,
+});
+
+export const buttonDigitMouseAction = (value: Digit): CalculatorAction => ({
+  type: CalculatorActionTypes.BUTTON_DIGIT_PRESSED,
+  payload: Number(value).toString(),
+});
+
+export const buttonDigitKeyAction = (event: KeyboardEvent, value: Digit): CalculatorAction => {
   switch (event.type) {
     case "keypress": {
       return {
@@ -90,11 +90,11 @@ export const buttonDigitAction = (event: KeyboardEvent, value: Digit): Calculato
   }
 };
 
-export const buttonEqualsPressedAction = (): CalculatorAction => ({
+export const buttonEqualsMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_EQUALS_PRESSED,
 });
 
-export const buttonEqualsAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonEqualsKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_EQUALS_PRESSED,
@@ -102,11 +102,11 @@ export const buttonEqualsAction = (event: KeyboardEvent): CalculatorAction =>
     CalculatorActionTypes.BUTTON_EQUALS_KEYUP,
   );
 
-export const buttonSubtractPressedAction = (): CalculatorAction => ({
+export const buttonSubtractMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_SUBTRACT_PRESSED,
 });
 
-export const buttonSubtractAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonSubtractKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_SUBTRACT_PRESSED,
@@ -114,11 +114,11 @@ export const buttonSubtractAction = (event: KeyboardEvent): CalculatorAction =>
     CalculatorActionTypes.BUTTON_SUBTRACT_KEYUP,
   );
 
-export const buttonMultiplyPressedAction = (): CalculatorAction => ({
+export const buttonMultiplyMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_MULTIPLY_PRESSED,
 });
 
-export const buttonMultiplyAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonMultiplyKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_MULTIPLY_PRESSED,
@@ -126,11 +126,11 @@ export const buttonMultiplyAction = (event: KeyboardEvent): CalculatorAction =>
     CalculatorActionTypes.BUTTON_MULTIPLY_KEYUP,
   );
 
-export const buttonDividePressedAction = (): CalculatorAction => ({
+export const buttonDivideMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_DIVIDE_PRESSED,
 });
 
-export const buttonDivideAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonDivideKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_DIVIDE_PRESSED,
@@ -138,11 +138,11 @@ export const buttonDivideAction = (event: KeyboardEvent): CalculatorAction =>
     CalculatorActionTypes.BUTTON_DIVIDE_KEYUP,
   );
 
-export const buttonAddPressedAction = (): CalculatorAction => ({
+export const buttonAddMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_ADD_PRESSED,
 });
 
-export const buttonAddAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonAddKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_ADD_PRESSED,
@@ -150,11 +150,11 @@ export const buttonAddAction = (event: KeyboardEvent): CalculatorAction =>
     CalculatorActionTypes.BUTTON_ADD_KEYUP,
   );
 
-export const buttonDecimalPressedAction = (): CalculatorAction => ({
+export const buttonDecimalMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_DECIMAL_PRESSED,
 });
 
-export const buttonDecimalAction = (event: KeyboardEvent): CalculatorAction =>
+export const buttonDecimalKeyAction = (event: KeyboardEvent): CalculatorAction =>
   createKeyAction(
     event,
     CalculatorActionTypes.BUTTON_DECIMAL_PRESSED,

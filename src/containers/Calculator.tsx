@@ -5,13 +5,13 @@ import Pinpad from "./Pinpad";
 
 import { store } from "../store/store";
 import {
-  buttonDigitAction,
-  buttonEqualsAction,
-  buttonSubtractAction,
-  buttonMultiplyAction,
-  buttonDivideAction,
-  buttonAddAction,
-  buttonDecimalAction,
+  buttonDigitKeyAction,
+  buttonEqualsKeyAction,
+  buttonSubtractKeyAction,
+  buttonMultiplyKeyAction,
+  buttonDivideKeyAction,
+  buttonAddKeyAction,
+  buttonDecimalKeyAction,
 } from "../store/actions";
 
 const processKeys = (event: KeyboardEvent): void => {
@@ -19,78 +19,78 @@ const processKeys = (event: KeyboardEvent): void => {
   switch (event.code) {
     case "Numpad1":
     case "Digit1": {
-      store.dispatch(buttonDigitAction(event, 1));
+      store.dispatch(buttonDigitKeyAction(event, 1));
       break;
     }
     case "Numpad2":
     case "Digit2": {
-      store.dispatch(buttonDigitAction(event, 2));
+      store.dispatch(buttonDigitKeyAction(event, 2));
       break;
     }
 
     case "Numpad3":
     case "Digit3": {
-      store.dispatch(buttonDigitAction(event, 3));
+      store.dispatch(buttonDigitKeyAction(event, 3));
       break;
     }
 
     case "Numpad4":
     case "Digit4": {
-      store.dispatch(buttonDigitAction(event, 4));
+      store.dispatch(buttonDigitKeyAction(event, 4));
       break;
     }
 
     case "Numpad5":
     case "Digit5": {
-      store.dispatch(buttonDigitAction(event, 5));
+      store.dispatch(buttonDigitKeyAction(event, 5));
       break;
     }
 
     case "Numpad6":
     case "Digit6": {
-      store.dispatch(buttonDigitAction(event, 6));
+      store.dispatch(buttonDigitKeyAction(event, 6));
       break;
     }
 
     case "Numpad7":
     case "Digit7": {
-      store.dispatch(buttonDigitAction(event, 7));
+      store.dispatch(buttonDigitKeyAction(event, 7));
       break;
     }
 
     case "Numpad8":
     case "Digit8": {
-      store.dispatch(buttonDigitAction(event, 8));
+      store.dispatch(buttonDigitKeyAction(event, 8));
       break;
     }
 
     case "Numpad9":
     case "Digit9": {
-      store.dispatch(buttonDigitAction(event, 9));
+      store.dispatch(buttonDigitKeyAction(event, 9));
       break;
     }
 
     case "Numpad0":
     case "Digit0": {
-      store.dispatch(buttonDigitAction(event, 0));
+      store.dispatch(buttonDigitKeyAction(event, 0));
       break;
     }
 
     // -
     case "Minus":
     case "NumpadSubtract": {
-      store.dispatch(buttonSubtractAction(event));
+      store.dispatch(buttonSubtractKeyAction(event));
       break;
     }
 
     // *
     case "NumpadMultiply": {
-      store.dispatch(buttonMultiplyAction(event));
+      store.dispatch(buttonMultiplyKeyAction(event));
       break;
     }
     case "Digit8": {
       if (event.shiftKey) {
-        store.dispatch(buttonMultiplyAction(event));
+        store.dispatch(buttonMultiplyKeyAction(event));
       }
       break;
     }
@@ -98,21 +98,21 @@ const processKeys = (event: KeyboardEvent): void => {
     // /
     case "Slash":
     case "NumpadDivide": {
-      store.dispatch(buttonDivideAction(event));
+      store.dispatch(buttonDivideKeyAction(event));
       break;
     }
 
     // +
     case "NumpadAdd": {
-      store.dispatch(buttonAddAction(event));
+      store.dispatch(buttonAddKeyAction(event));
       break;
     }
-    
+
     case "Equal": {
       if (event.shiftKey) {
-        store.dispatch(buttonAddAction(event));
+        store.dispatch(buttonAddKeyAction(event));
       } else {
-        store.dispatch(buttonEqualsAction(event));
+        store.dispatch(buttonEqualsKeyAction(event));
       }
       break;
     }
@@ -120,7 +120,7 @@ const processKeys = (event: KeyboardEvent): void => {
     case "Period":
     case "Comma":
     case "NumpadDecimal": {
-      store.dispatch(buttonDecimalAction(event));
+      store.dispatch(buttonDecimalKeyAction(event));
       break;
     }
   }
