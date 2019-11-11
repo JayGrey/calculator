@@ -108,6 +108,12 @@ const processKeys = (event: KeyboardEvent): void => {
       break;
     }
 
+    case "NumpadEnter":
+    case "Enter": {
+      store.dispatch(buttonEqualsKeyAction(event));
+      break;
+    }
+
     case "Equal": {
       if (event.shiftKey) {
         store.dispatch(buttonAddKeyAction(event));
