@@ -14,6 +14,11 @@ export interface ButtonsState {
   eight: boolean;
   nine: boolean;
   decimal: boolean;
+  add: boolean;
+  subtract: boolean;
+  multiply: boolean;
+  divide: boolean;
+  equals: boolean;
 }
 
 export interface StoreState {
@@ -37,6 +42,11 @@ const defaultState: StoreState = {
     eight: false,
     nine: false,
     decimal: false,
+    add: false,
+    subtract: false,
+    multiply: false,
+    divide: false,
+    equals: false,
   },
 };
 
@@ -78,10 +88,26 @@ const reducer = (state: StoreState = defaultState, action: CalculatorAction): St
         : { ...state, elements: [...state.elements, "+"] };
     }
 
+    case CalculatorActionTypes.BUTTON_ADD_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, add: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_ADD_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, add: false } };
+    }
+
     case CalculatorActionTypes.BUTTON_SUBTRACT_PRESSED: {
       return state.displayText.length > 0
         ? { ...state, displayText: "", elements: [...state.elements, state.displayText, "-"] }
         : { ...state, elements: [...state.elements, "-"] };
+    }
+
+    case CalculatorActionTypes.BUTTON_SUBTRACT_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, subtract: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_SUBTRACT_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, subtract: false } };
     }
 
     case CalculatorActionTypes.BUTTON_MULTIPLY_PRESSED: {
@@ -90,16 +116,40 @@ const reducer = (state: StoreState = defaultState, action: CalculatorAction): St
         : { ...state, elements: [...state.elements, "*"] };
     }
 
+    case CalculatorActionTypes.BUTTON_MULTIPLY_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, multiply: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_MULTIPLY_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, multiply: false } };
+    }
+
     case CalculatorActionTypes.BUTTON_DIVIDE_PRESSED: {
       return state.displayText.length > 0
         ? { ...state, displayText: "", elements: [...state.elements, state.displayText, "/"] }
         : { ...state, elements: [...state.elements, "/"] };
     }
 
+    case CalculatorActionTypes.BUTTON_DIVIDE_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, divide: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_DIVIDE_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, divide: false } };
+    }
+
     case CalculatorActionTypes.BUTTON_EQUALS_PRESSED: {
       return state.displayText.length > 0
         ? { ...state, displayText: evaluate([...state.elements, state.displayText]), elements: [] }
         : { ...state, displayText: evaluate([...state.elements]), elements: [] };
+    }
+
+    case CalculatorActionTypes.BUTTON_EQUALS_KEYDOWN: {
+      return { ...state, buttonsState: { ...state.buttonsState, equals: true } };
+    }
+
+    case CalculatorActionTypes.BUTTON_EQUALS_KEYUP: {
+      return { ...state, buttonsState: { ...state.buttonsState, equals: false } };
     }
 
     default:

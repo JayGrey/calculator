@@ -31,9 +31,24 @@ const Pinpad = (props: PinpadProps): JSX.Element => {
   return (
     <div id="pinpad">
       <Button id="clear" title="CE" clickHandler={props.buttonCEPressedAction} />
-      <Button id="divide" title="/" clickHandler={props.buttonDividePressedAction} />
-      <Button id="multiply" title="*" clickHandler={props.buttonMultiplyPressedAction} />
-      <Button id="subtract" title="-" clickHandler={props.buttonSubtractPressedAction} />
+      <Button
+        id="divide"
+        pressed={props.buttonsState["divide"]}
+        title="/"
+        clickHandler={props.buttonDividePressedAction}
+      />
+      <Button
+        id="multiply"
+        pressed={props.buttonsState["multiply"]}
+        title="*"
+        clickHandler={props.buttonMultiplyPressedAction}
+      />
+      <Button
+        id="subtract"
+        pressed={props.buttonsState["subtract"]}
+        title="-"
+        clickHandler={props.buttonSubtractPressedAction}
+      />
       <Button
         id="one"
         title="1"
@@ -53,7 +68,7 @@ const Pinpad = (props: PinpadProps): JSX.Element => {
         clickHandler={(): void => props.buttonDigitPressedAction(3)}
       />
 
-      <Button id="add" title="+" clickHandler={props.buttonAddPressedAction} />
+      <Button id="add" title="+" pressed={props.buttonsState["add"]} clickHandler={props.buttonAddPressedAction} />
 
       <Button
         id="four"
@@ -91,7 +106,12 @@ const Pinpad = (props: PinpadProps): JSX.Element => {
         pressed={props.buttonsState["nine"]}
         clickHandler={(): void => props.buttonDigitPressedAction(9)}
       />
-      <Button id="equals" title="=" clickHandler={props.buttonEqualsPressedAction} />
+      <Button
+        id="equals"
+        pressed={props.buttonsState["equals"]}
+        title="="
+        clickHandler={props.buttonEqualsPressedAction}
+      />
 
       <Button
         id="zero"
