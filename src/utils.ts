@@ -5,28 +5,20 @@ const findNextNum = (arr: string[], pos = 0): number => {
     return -1;
   }
 
-  return arr[pos].match(/^\d/) ? pos : findNextNum(arr, pos + 1);
+  return arr[pos].search(/^\d/) !== -1 ? pos : findNextNum(arr, pos + 1);
 };
 
 const findLastNum = (arr: string[], pos = arr.length - 1): number => {
-  return pos == -1 || arr[pos].match(/^\d+/) ? pos : findLastNum(arr, pos - 1);
-};
-
-const findNextOperator = (oper: string, arr: string[], pos = 0): number => {
-  if (pos >= arr.length) {
-    return -1;
-  }
-  return arr[pos][0] == oper ? pos : findNextOperator(oper, arr, pos + 1);
+  return pos == -1 || arr[pos].search(/^\d+/) !== -1 ? pos : findLastNum(arr, pos - 1);
 };
 
 const findAnyNextOperator = (arr: string[], pos = 0): number => {
-  const operators = "*/-+";
-
   if (pos >= arr.length) {
     return -1;
   }
 
-  return operators.indexOf(arr[pos][0]) !== -1 ? pos : findAnyNextOperator(arr, pos + 1);
+  arr[pos].match(/\d/);
+  return arr[pos].search(/\d/) == -1 ? pos : findAnyNextOperator(arr, pos + 1);
 };
 
 const trimBeginning = (arr: string[]): string[] => {
@@ -110,7 +102,7 @@ export const evaluate = (arr: string[]): string => {
   return result[0];
 };
 
-console.log(evaluate(["5", "+", "-", "9", "+", "5"]));
+// console.log(evaluate(["5", "+", "-", "9", "+", "5"]));
 
 export const getDigitName = (n: number): string => {
   switch (n) {
