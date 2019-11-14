@@ -1,7 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
-
+const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -28,10 +29,18 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
       inlineSource: "bundle.js$",
     }),
+    new HtmlWebpackInlineSourcePlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM",
+    redux: "Redux",
+    "react-redux": "ReactRedux",
+  },
 };
