@@ -57,7 +57,7 @@ const createKeyAction = (
   }
 };
 
-export const buttonCEPressedAction = (): CalculatorAction => ({
+export const buttonCEMouseAction = (): CalculatorAction => ({
   type: CalculatorActionTypes.BUTTON_CE_PRESSED,
 });
 

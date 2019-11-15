@@ -80,11 +80,14 @@ const calculate = (oper: string, num1: string, num2: string): string => {
       ? Number(num1) / (koefecient * Number(num2))
       : NaN;
 
+  if (!Number.isFinite(num) || Number.isNaN(num)) {
+    throw new Error();
+  }
+
   return Number(num).toString();
 };
 
 const evalOperator = (arr: string[]): string[] => {
-  // const index = findNextOperator(oper, arr);
   const index = findAnyNextOperator(arr);
 
   return index < 1

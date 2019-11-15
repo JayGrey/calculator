@@ -142,7 +142,10 @@ export const Calculator = (): JSX.Element => {
   };
 
   const keyPressHandler = (event: KeyboardEvent): void => {
-    processKeys(event);
+    const state = store.getState();
+    if (!state.error) {
+      processKeys(event);
+    }
   };
 
   React.useEffect(() => {

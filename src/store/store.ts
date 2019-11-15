@@ -25,6 +25,7 @@ export interface StoreState {
   displayText: string;
   elements: string[];
   buttonsState: ButtonsState;
+  error: boolean;
 }
 
 const defaultState: StoreState = {
@@ -48,6 +49,7 @@ const defaultState: StoreState = {
     divide: false,
     equals: false,
   },
+  error: false,
 };
 
 const reducer = (state: StoreState = defaultState, action: CalculatorAction): StoreState => {
@@ -139,9 +141,16 @@ const reducer = (state: StoreState = defaultState, action: CalculatorAction): St
     }
 
     case CalculatorActionTypes.BUTTON_EQUALS_PRESSED: {
-      return state.displayText.length > 0
-        ? { ...state, displayText: evaluate([...state.elements, state.displayText]), elements: [] }
-        : { ...state, displayText: evaluate([...state.elements]), elements: [] };
+      try {
+        const evalResult =
+          state.displayText.length > 0
+            ? evaluate([...state.elements, state.displayText])
+            : evaluate([...state.elements]);
+
+        return { ...state, displayText: evalResult, elements: [] };
+      } catch (error) {
+        return { ...state, error: true };
+      }
     }
 
     case CalculatorActionTypes.BUTTON_EQUALS_KEYDOWN: {
